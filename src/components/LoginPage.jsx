@@ -1,36 +1,27 @@
-import React from 'react'
-import "../styles/Login.css"
-import Icon from '@mdi/react'
+import React from 'react';
+import "../styles/Login.css";
+import Icon from '@mdi/react';
 import { mdiGoogle } from '@mdi/js';
-import { mdiFacebook } from '@mdi/js';
+import firebase from "firebase/compat/app";;
+import "firebase/compat/firestore"
+import { auth } from "../firebase";
 
 const LoginPage = () => {
   return (
     <div className="login-page">
         <div className="login-container">
             <div className="login-header">
-                <h3>Welcome to <span style={{ color: "blue"}}>Click!</span></h3>
+                <h3>Welcome to <span style={{ color: "green"}}>Click!</span></h3>
                 <p>Please sign in to continue</p>
             </div>
-            <div className="login-buttons">
-                <button className="sign-in">
+            <button className="sign-in" onClick={() => auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider)}>
                     <Icon path={mdiGoogle}
                         title="Google"
                         color="green"
                         className="google-icon"
                     />
                     <span>Sign In With Google</span>
-                </button>
-                <p>or</p>
-                <button className="sign-in">
-                    <Icon path={mdiFacebook}
-                        title="Google"
-                        color="blue"
-                        className="facebook-icon"
-                    />
-                    <span>Sign In With Facebook</span>
-                </button>
-            </div>
+            </button>
         </div>
     </div>
   )
