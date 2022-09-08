@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./components/LoginPage";
+import Login from "./components/LoginPage";
 import Home from "./components/Home";
 import { AuthProvider } from "./contexts/AuthContext";
 
@@ -10,8 +10,7 @@ function App() {
         <BrowserRouter>
             <AuthProvider>
                 <Routes>
-                    <Route exact path="/" element={<LoginPage />} />
-                    <Route path="/home" element={<Home />} />
+                    <Route path="/" element={<Home />} />
                 </Routes>
             </AuthProvider>
         </BrowserRouter>

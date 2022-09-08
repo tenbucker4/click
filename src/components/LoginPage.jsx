@@ -1,12 +1,13 @@
 import React from 'react';
+import "firebase/compat/firestore"
+import { auth } from "../firebase";
 import "../styles/Login.css";
 import Icon from '@mdi/react';
 import { mdiGoogle } from '@mdi/js';
 import firebase from "firebase/compat/app";;
-import "firebase/compat/firestore"
-import { auth } from "../firebase";
 
-const LoginPage = () => {
+
+const Login = () => {
   return (
     <div className="login-page">
         <div className="login-container">
@@ -27,4 +28,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default Login

@@ -16,8 +16,6 @@ export const AuthProvider = ({ children }) => {
         auth.onAuthStateChanged((profile) => {
             setProfile(profile);
             setLoading(false);
-
-            if (profile) navigate("/home");
         });
     }, [profile]);
 

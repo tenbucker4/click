@@ -1,11 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChatEngine } from "react-chat-engine";
 import { auth } from "../firebase";
+import "../styles/Home.css"
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div className="home-page">
+        <header>
+            <div>Welcome to Click</div>
+            <button>Login</button>
+        </header>
+        <main>
+            <section className="contacts"></section>
+            <section className="message-log"></section>
+        </main>
+    </div>
   )
 }
 

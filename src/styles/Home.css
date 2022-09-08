@@ -1,0 +1,31 @@
+.home-page {
+    min-height: 100vh;
+    background-color: white;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 75px;
+    background-color: rgb(234, 233, 233);
+    padding: 0 2rem;
+}
+
+main {
+    display: flex;
+}
+
+section {
+    min-height: calc(100vh - 75px);
+    background-color: aquamarine;
+}
+
+.contacts {
+    width: 30%;
+    border-right: 1px solid black;
+}
+
+.message-log {
+    width: 70%;
+}
