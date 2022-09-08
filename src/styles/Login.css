@@ -1,0 +1,53 @@
+.login-page {
+    min-height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    width: 90%;
+    max-width: 400px;
+    height: 400px;
+    background-color: rgb(234, 233, 233);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.login-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    gap: 0.5rem;
+}
+
+.sign-in {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 0.4rem 0rem;
+}
+
+.google-icon,
+.facebook-icon {
+    width: 1.5rem;
+    height: auto;
+}
