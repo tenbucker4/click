@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Nav from "./components/Nav";
 import AuthProvider from "./contexts/AuthContext";
 import Chat from "./components/Chat";
+import UserProfile from "./components/UserProfile";
 
 function App() {
     return (
@@ -17,6 +18,9 @@ function App() {
                     <Route path="/auth" element={<Home />} />
                     <Route path="/chat" element={<PrivateRoute />}>
                         <Route path="/chat" element={<Chat />} />
+                    </Route>
+                    <Route path="/profile" element={<PrivateRoute />}>
+                        <Route path="/profile" element={<UserProfile />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
