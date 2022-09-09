@@ -13,22 +13,25 @@ const Chat = () => {
     // creates query filtering out current user
     const userQuery = query(usersRef, where("uid", "not-in", [auth.currentUser.uid]));
     // execute query
-    const unsub = onSnapshot(userQuery, (querySnapshot) => {
+    const find = onSnapshot(userQuery, (querySnapshot) => {
       let users = [];
       querySnapshot.forEach((doc) => {
         users.push(doc.data());
       });
       setUsers(users);
     });
-    return () => unsub();
+    return () => find();
   }, []);
 
+  const selectChat = (user) => {
+    console.log(user)
+  }
 
   return (
     <div className="chat-page">
       <div className="conversations">
         {users.map((user) => (
-          <User key={user.uid} user={user} />
+          <User key={user.uid} user={user} selectChat={selectChat}/>
         ))}
       </div>
       <div className="chat-box"></div>

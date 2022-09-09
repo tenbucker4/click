@@ -83,7 +83,7 @@ const UserProfile = () => {
             </div>
           </div>
           )}
-          <div className="user-details">
+          <div>
             <h3>{user.name}</h3>
             <p>{user.email}</p>
             <p>{`Member since: ${user.createdAt.toDate().toDateString()}`}</p>
