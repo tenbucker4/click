@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { db, auth } from "../firebase";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
+import User from './User';
 import "../styles/Chat.css"
 
 const Chat = () => {
@@ -22,11 +23,14 @@ const Chat = () => {
     return () => unsub();
   }, []);
 
-  console.log(users)
 
   return (
     <div className="chat-page">
-      <div className="conversations"></div>
+      <div className="conversations">
+        {users.map((user) => (
+          <User key={user.uid} user={user} />
+        ))}
+      </div>
       <div className="chat-box"></div>
     </div>
   )

@@ -11,6 +11,10 @@
     padding: 1rem;
 }
 
+.login-container p {
+    color: white;
+}
+
 .login-header {
     display: flex;
     flex-direction: column;

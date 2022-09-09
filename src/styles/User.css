@@ -1,0 +1,24 @@
+.user-box {
+    display: flex;
+    align-items: center;
+}
+
+.user-box .avatar {
+    width: 3rem;
+    height: 3rem;
+}
+
+.online-indicator {
+    height: 0.75rem;
+    width: 0.75rem;
+    border: none;
+    border-radius: 50%;
+}
+
+.online {
+    background-color: green;
+}
+
+.offline {
+    background-color: red;
+}
