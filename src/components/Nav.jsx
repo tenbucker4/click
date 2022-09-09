@@ -24,7 +24,7 @@ const Nav = () => {
             <button className="nav-button" onClick={handleSignOut}>Logout</button>
           </div>
           ) : (
-          <button className="nav-button">Login</button>
+          <button className="nav-button" onClick={() => navigate("/auth")}>Login</button>
         )}
     </header>
   )

@@ -48,7 +48,7 @@ const Auth = () => {
         name,
         email,
         createdAt: Timestamp.fromDate(new Date()),
-        isOnline: true,
+        isOnline: false,
       })
 
       setUserData({
@@ -60,7 +60,7 @@ const Auth = () => {
         loading: false,
       });
 
-      console.log("success!")
+      window.location.reload();
 
     } catch (err) {
       setUserData({ ...userData, error: err.message, loading: false });
@@ -70,6 +70,7 @@ const Auth = () => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+    setUserData({ ...userData, error: null, loading: true });
 
     if (!email || !password) {
       return setUserData({ ...userData, error: "Please fill out both fields"})
@@ -77,6 +78,10 @@ const Auth = () => {
 
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
+
+      await updateDoc(doc(db, "users", result.user.uid), {
+        isOnline: true
+      });
 
       setUserData( {
         name: "",
@@ -87,11 +92,7 @@ const Auth = () => {
         loading: false,
       });
 
-      navigate("/chat")
-
-      await updateDoc(doc(db, "users", result.user.uid), {
-        isOnline: true
-      });
+      navigate("/chat");
 
     } catch (error) {
       setUserData({ ...userData, error: error.message, loading: false });
