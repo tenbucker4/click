@@ -1,6 +1,7 @@
 // import firebase from "firebase/compat/app";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 // import "firebase/compat/firestore";
 // import "firebase/compat/auth";
 
@@ -12,12 +13,12 @@ const firebaseConfig = {
     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
     appId: process.env.REACT_APP_APP_ID,
-    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-export { auth };
+const db = getFirestore(app);
+export { auth, db };
 
 // export const auth = firebase
 //     .initializeApp({
