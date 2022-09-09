@@ -3,7 +3,7 @@ import Img from "../images/avatar-picture.webp"
 import Icon from '@mdi/react'
 import { mdiCameraPlus } from '@mdi/js';
 import { storage, db, auth } from '../firebase';
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { ref, getDownloadURL, uploadBytes, deleteObject } from "firebase/storage";
 import { getDoc, doc, updateDoc } from "firebase/firestore";
 import "../styles/UserProfile.css";
 
@@ -25,6 +25,9 @@ const UserProfile = () => {
         const imgRef = ref(storage, `profilePicture/${new Date().getTime()} - ${profilePicture.name}`)
 
         try {
+          if (user.avatarPath) {
+            await deleteObject(ref(storage, user.avatarPath))
+          }
           const pic = await uploadBytes(imgRef, profilePicture)
           const url = await getDownloadURL(ref(storage, pic.ref.fullPath))
           await updateDoc(doc(db, "users", auth.currentUser.uid), {
