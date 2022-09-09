@@ -1,0 +1,25 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 75px;
+    background-color: var(--off-white);
+    padding: 0 2rem;
+}
+
+.app-title {
+    letter-spacing: 0.1ch;
+    color: var(--blue);
+    font-size: 20px;
+}
+
+.nav-button {
+    background-color: var(--blue);
+    color: white;
+    font-weight: 300;
+    border: none;
+    padding: 0.5rem 0rem;
+    text-transform: uppercase;
+    width: 100px;
+    border-radius: 10px;
+}

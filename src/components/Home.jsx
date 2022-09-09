@@ -2,19 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../firebase";
 import "../styles/Home.css"
+import Auth from './Auth';
 
 const Home = () => {
   return (
-    <div className="home-page">
-        <header>
-            <div>Welcome to Click</div>
-            <button>Login</button>
-        </header>
-        <main>
-            <section className="contacts"></section>
-            <section className="message-log"></section>
-        </main>
-    </div>
+    <section className="home-page">
+      <Auth />
+    </section>
   )
 }
 

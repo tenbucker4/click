@@ -7,6 +7,11 @@
     font-family: "Roboto", sans-serif;
 }
 
+:root {
+    --blue: #0084ff;
+    --off-white: rgb(231, 230, 230);
+}
+
 p {
     font-weight: 300;
 }
@@ -17,5 +22,5 @@ button {
 }
 
 button:hover {
-    filter: brightness(90%);
+    filter: brightness(80%);
 }

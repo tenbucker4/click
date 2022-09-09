@@ -1,18 +1,19 @@
 import React from "react";
 import "./styles/index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./components/LoginPage";
 import Home from "./components/Home";
-import { AuthProvider } from "./contexts/AuthContext";
+import Nav from "./components/Nav";
+import Auth from "./components/Auth";
+import Chat from "./components/Chat";
 
 function App() {
     return (
         <BrowserRouter>
-            <AuthProvider>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                </Routes>
-            </AuthProvider>
+            <Nav />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/chat" element={<Chat />} />
+            </Routes>
         </BrowserRouter>
     );
 }
