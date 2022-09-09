@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { setDoc, doc, Timestamp } from "firebase/firestore"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { setDoc, updateDoc, doc, Timestamp } from "firebase/firestore"
 import { auth, db } from '../firebase';
 import "../styles/Auth.css"
 
@@ -41,7 +41,7 @@ const Auth = () => {
         auth,
         email,
         password
-      );
+      )
 
       await setDoc(doc(db, "users", result.user.uid), {
         uid: result.user.uid,
@@ -49,7 +49,7 @@ const Auth = () => {
         email,
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
-      });
+      })
 
       setUserData({
         name: "",
@@ -59,87 +59,60 @@ const Auth = () => {
         error: null,
         loading: false,
       });
-       if (result) console.log("success")
+
+      console.log("success!")
+
     } catch (err) {
       setUserData({ ...userData, error: err.message, loading: false });
     }
 
   }
 
-  const handleSignIn = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
 
     if (!email || !password) {
       return setUserData({ ...userData, error: "Please fill out both fields"})
     }
+
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+
+      setUserData( {
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        error: null,
+        loading: false,
+      });
+
+      navigate("/chat")
+
+      await updateDoc(doc(db, "users", result.user.uid), {
+        isOnline: true
+      });
+
+    } catch (error) {
+      setUserData({ ...userData, error: error.message, loading: false });
+    }
   }
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setUserData( {...userData, error: null, loading: true })
-  //   if (isSignUp) {
-  //     if (password !== confirmPassword) {
-  //        return setUserData({ ...userData, error: "Passwords do not match"})
-  //     } 
-  //     if (!name || !email || !password || !confirmPassword) {
-  //       return setUserData({ ...userData, error: "Please fill out all fields"})
-  //     }
-  //   }
-
-  //   if (!isSignUp) {
-  //     if (!email || !password) {
-  //       return setUserData({ ...userData, error: "Please fill out both fields"})
-  //     }
-  //   }
-
-  //   console.log(userData)
-
-  //   if (isSignUp) {
-  //     try {
-  //       const result = await createUserWithEmailAndPassword(
-  //         auth,
-  //         email,
-  //         password
-  //       );
-  //       // pass database, collection, and documentID into the doc
-  //       await setDoc(doc(db, "users", result.user.uid), {
-  //         uid: result.user.uid,
-  //         name,
-  //         email,
-  //         createdAt: Timestamp.fromDate(new Date()),
-  //         isOnline: true
-  //       });
-
-  //       console.log("succes, resetting state")
-  //       setUserData({    
-  //         name: "",
-  //         email: "",
-  //         password: "",
-  //         confirmPassword: "",
-  //         error: null,
-  //         loading: false
-  //       });
-
-  //     } catch (error) {
-  //       setUserData({ ...userData, error: error.message, loading: false})
-  //     }
-  //   }
-  // }
-
   return (
+
     <div className="login-container">
         <div className="login-header">
             <h3>Welcome to <span style={{ color: "#0084ff"}}>CLICK</span></h3>
         </div>
           {isSignUp? (
                 <form onSubmit={handleSignUp}>
-                  <input placeholder="Name" name="name" onChange={handleChange}></input>
-                  <input type="email" placeholder="Email" name="email" onChange={handleChange}></input>
-                  <input type="password" placeholder="Password" name="password" onChange={handleChange}></input>
-                  <input type="password" placeholder="Confirm Password" name="confirmPassword" onChange={handleChange}></input>
+                  <input placeholder="Name" name="name" onChange={handleChange} defaultValue={name}></input>
+                  <input type="email" placeholder="Email" name="email" onChange={handleChange} defaultValue={email}></input>
+                  <input type="password" placeholder="Password" name="password" onChange={handleChange} defaultValue={password}></input>
+                  <input type="password" placeholder="Confirm Password" name="confirmPassword" onChange={handleChange} defaultValue={confirmPassword}></input>
                   {error? <p style={{ color: "red", fontSize: "12px" }}>{error}</p> : null}
                   {loading? <p style={{ color: "green", fontSize: "12px" }}>Processing...</p> : null}
-                  <button type="submit" className="sign-in">
+                  <button type="submit" className="sign-in" disabled={loading}>
                     <span>Register</span>
                   </button>
                 </form>
@@ -147,8 +120,8 @@ const Auth = () => {
                   <input type="email" placeholder="Email" name="email" onChange={handleChange}></input>
                   <input type="password" placeholder="Password" name="password" onChange={handleChange}></input>
                   {error? <p style={{ color: "red", fontSize: "12px" }}>{error}</p> : null}
-                  {loading? <p style={{ color: "green", fontSize: "12px" }}>Processing...</p> : null}
-                  <button type="submit" className="sign-in">
+                  {loading? <p style={{ color: "green", fontSize: "12px" }}>Logging in...</p> : null}
+                  <button type="submit" className="sign-in" onClick={handleSignIn} disabled={loading}>
                     <span>Login</span>
                   </button>
                 </form>

@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "homepage": "/auth",
   "private": true,
   "dependencies": {
     "@mdi/js": "^7.0.96",
