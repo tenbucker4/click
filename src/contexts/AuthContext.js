@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
+import LoadingScreen from "../components/LoadingScreen";
 
 export const AuthContext = createContext();
 
@@ -17,7 +18,7 @@ const AuthProvider = ({ children }) => {
     }, []);
 
     if (loading) {
-        return "Loading";
+        return <LoadingScreen />;
     }
 
     return (

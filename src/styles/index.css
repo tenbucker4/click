@@ -24,3 +24,15 @@ button {
 button:hover {
     filter: brightness(80%);
 }
+
+.loading {
+    position: relative;
+}
+
+.loading-icon {
+    width: 5rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

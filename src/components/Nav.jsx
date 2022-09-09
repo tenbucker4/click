@@ -20,7 +20,7 @@ const Nav = () => {
 
   return (
     <header>
-        <div className="app-title">CLICK</div>
+        <h3 className="app-title">CLICK</h3>
         {user? (
           <div>
             <button className="nav-button" onClick={handleSignOut}>Logout</button>
