@@ -109,7 +109,7 @@ const Auth = () => {
                   <input type="email" placeholder="Email" name="email" onChange={handleChange}></input>
                   <input type="password" placeholder="Password" name="password" onChange={handleChange}></input>
                   {error? <p style={{ color: "red", fontSize: "12px" }}>{error}</p> : null}
-                  {loading? <p style={{ color: "green", fontSize: "12px" }}>Logging in...</p> : null}
+                  {loading? <p style={{ color: "black", fontSize: "12px" }}>Logging in...</p> : null}
                   <button type="submit" className="sign-in" onClick={handleSignIn} disabled={loading}>
                     <span>Login</span>
                   </button>
