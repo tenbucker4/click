@@ -91,21 +91,21 @@ const Auth = () => {
 
     <div className="login-container">
         <div className="login-header">
-            <h3>Welcome to <span style={{ color: "#0084ff"}}>CLICK</span></h3>
+            <div>Welcome to <span style={{ color: "white"}}>CLICK</span></div>
         </div>
           {isSignUp? (
-                <form onSubmit={handleSignUp}>
-                  <input placeholder="Name" name="name" onChange={handleChange} defaultValue={name}></input>
-                  <input type="email" placeholder="Email" name="email" onChange={handleChange} defaultValue={email}></input>
-                  <input type="password" placeholder="Password" name="password" onChange={handleChange} defaultValue={password}></input>
-                  <input type="password" placeholder="Confirm Password" name="confirmPassword" onChange={handleChange} defaultValue={confirmPassword}></input>
+                <form onSubmit={handleSignUp} autoComplete="off">
+                  <input id="name" placeholder="Name" name="name" onChange={handleChange} defaultValue={name}></input>
+                  <input id="email" type="email" placeholder="Email" name="email" onChange={handleChange} defaultValue={email}></input>
+                  <input id="password" type="password" placeholder="Password" name="password" onChange={handleChange} defaultValue={password}></input>
+                  <input id="confirmPassword" type="password" placeholder="Confirm Password" name="confirmPassword" onChange={handleChange} defaultValue={confirmPassword}></input>
                   {error? <p style={{ color: "red", fontSize: "12px" }}>{error}</p> : null}
-                  {loading? <p style={{ color: "green", fontSize: "12px" }}>Processing...</p> : null}
+                  {loading? <p style={{ color: "black", fontSize: "12px" }}>Processing...</p> : null}
                   <button type="submit" className="sign-in" disabled={loading}>
                     <span>Register</span>
                   </button>
                 </form>
-          ) : ( <form onSubmit={handleSignIn}>
+          ) : ( <form onSubmit={handleSignIn} autoComplete="off">
                   <input type="email" placeholder="Email" name="email" onChange={handleChange}></input>
                   <input type="password" placeholder="Password" name="password" onChange={handleChange}></input>
                   {error? <p style={{ color: "red", fontSize: "12px" }}>{error}</p> : null}
@@ -115,8 +115,8 @@ const Auth = () => {
                   </button>
                 </form>
           )}
-        {isSignUp? (<p>Already have an account? <span className="toggle-sign-up" style={{ color: "#0084ff"}} onClick={() => setIsSignUp(isSignUp ? false : true)}>Sign In</span></p>) : (
-          <p>Need an account? <span className="toggle-sign-up" style={{ color: "#0084ff"}} onClick={() => setIsSignUp(isSignUp ? false : true)}>Sign Up</span></p>
+        {isSignUp? (<p>Already have an account? <span className="toggle-sign-up" style={{ color: "white", fontWeight:"bold"}} onClick={() => setIsSignUp(isSignUp ? false : true)}>Sign In</span></p>) : (
+          <p>Need an account? <span className="toggle-sign-up" style={{ color: "white", fontWeight:"bold"}} onClick={() => setIsSignUp(isSignUp ? false : true)}>Sign Up</span></p>
         )}
         
     </div>
