@@ -1,30 +1,28 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 
-const AuthContext = React.createContext();
+export const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext);
-
-export const AuthProvider = ({ children }) => {
-    const [profile, setProfile] = useState(null);
+const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
 
-    // Get user from Firebase and set to state
     useEffect(() => {
-        auth.onAuthStateChanged((profile) => {
-            setProfile(profile);
+        onAuthStateChanged(auth, (user) => {
+            setUser(user);
             setLoading(false);
         });
-    }, [profile]);
+    }, []);
 
-    // We need a value object when working with auth contexts
-    const value = { profile };
+    if (loading) {
+        return "Loading";
+    }
 
     return (
-        <AuthContext.Provider value={value}>
-            {!loading && children}
-        </AuthContext.Provider>
+        <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
     );
 };
+
+export default AuthProvider;
