@@ -6,6 +6,7 @@ import "../styles/Chat.css"
 
 const Chat = () => {
   const [users, setUsers] = useState([]);
+  const [chat, setChat] = useState("");
 
   useEffect(() => {
     const usersRef = collection(db, "users");
@@ -25,6 +26,7 @@ const Chat = () => {
 
   const selectChat = (user) => {
     console.log(user)
+    setChat(user);
   }
 
   return (
@@ -34,7 +36,9 @@ const Chat = () => {
           <User key={user.uid} user={user} selectChat={selectChat}/>
         ))}
       </div>
-      <div className="chat-box"></div>
+      <div className="chat-box">
+        {chat ? <div>{chat.name}</div> : <div className="chat-intro">Welcome! <br></br>Select a user from the list to begin a conversation.</div>}
+      </div>
     </div>
   )
 }
