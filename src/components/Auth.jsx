@@ -6,14 +6,16 @@ import { auth, db } from '../firebase';
 import "../styles/Auth.css"
 
 const Auth = () => {
-  const [userData, setUserData] = useState({ 
+  const initState = {
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
     error: null,
     loading: false
-  })
+  }
+
+  const [userData, setUserData] = useState(initState)
 
   const { name, email, password, confirmPassword, error, loading } = userData;
 
@@ -51,14 +53,7 @@ const Auth = () => {
         isOnline: false,
       })
 
-      setUserData({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        error: null,
-        loading: false,
-      });
+      setUserData(initState);
 
       window.location.reload();
 
@@ -83,14 +78,7 @@ const Auth = () => {
         isOnline: true
       });
 
-      setUserData( {
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        error: null,
-        loading: false,
-      });
+      setUserData({initState});
 
       navigate("/chat");
 
