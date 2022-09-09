@@ -1,0 +1,13 @@
+.chat-page {
+    min-height: calc(100vh - 75px);
+    display: flex;
+}
+
+.conversations {
+    width: 30%;
+    background-color: var(--off-white);
+}
+
+.chat-box {
+    width: 70%;
+}
