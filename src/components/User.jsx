@@ -5,8 +5,10 @@ import "../styles/User.css"
 const User = ({ user }) => {
   return (
     <div className="user-box">
-        <img className="avatar" src={user.avatar || Img } alt="profile-picture"></img>
-        <div>{user.name}</div>
+        <div className="user-details">
+            <img className="avatar" src={user.avatar || Img } alt="profile-picture"></img>
+            <div>{user.name}</div>
+        </div>
         <div className={`online-indicator ${user.isOnline ? "online" : "offline"}`}></div>
     </div>
   )

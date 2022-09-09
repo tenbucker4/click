@@ -1,11 +1,25 @@
 .user-box {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.user-box:hover {
+    background-color: rgb(203, 203, 203);
 }
 
 .user-box .avatar {
-    width: 3rem;
-    height: 3rem;
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.user-details {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 .online-indicator {
@@ -13,10 +27,11 @@
     width: 0.75rem;
     border: none;
     border-radius: 50%;
+    justify-self: flex-start;
 }
 
 .online {
-    background-color: green;
+    background-color: rgb(3, 182, 3);
 }
 
 .offline {

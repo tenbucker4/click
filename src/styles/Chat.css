@@ -4,16 +4,15 @@
 }
 
 .conversations {
-    width: 30%;
+    width: 35%;
     background-color: var(--off-white);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    align-items: flex-start;
     padding: 0.5rem;
 }
 
 .chat-box {
-    width: 70%;
+    width: 65%;
 }
