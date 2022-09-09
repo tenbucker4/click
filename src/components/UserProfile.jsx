@@ -1,18 +1,51 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Img from "../images/avatar-picture.webp"
 import Icon from '@mdi/react'
 import { mdiCameraPlus } from '@mdi/js';
+import { storage, db, auth } from '../firebase';
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
 import "../styles/UserProfile.css";
 
 const UserProfile = () => {
   const [profilePicture, setProfilePicture] = useState("");
-  console.log(profilePicture);
+  const [user, setUser] = useState();
 
-  return (
+  useEffect(() => {
+    // Actual image url
+    getDoc(doc(db, "users", auth.currentUser.uid)).then(docSnap => {
+      if (docSnap.exists) {
+        setUser(docSnap.data());
+      }
+    })
+
+    // Path to image url
+    if (profilePicture) {
+      const uploadProfilePicture = async () => {
+        const imgRef = ref(storage, `profilePicture/${new Date().getTime()} - ${profilePicture.name}`)
+
+        try {
+          const pic = await uploadBytes(imgRef, profilePicture)
+          const url = await getDownloadURL(ref(storage, pic.ref.fullPath))
+          await updateDoc(doc(db, "users", auth.currentUser.uid), {
+            avatar: url,
+            avatarPath: pic.ref.fullPath
+          })
+  
+          setProfilePicture("")
+        } catch (error) {
+          console.log(error)
+        }
+      };
+      uploadProfilePicture()
+    }
+  }, [profilePicture])
+
+  return user ? (
     <div className="profile-page">
       <div className="profile-container">
         <div className="profile-picture">
-          <img src={Img}></img>
+          <img src={user.avatar || Img}></img>
           <div className="image-overlay">
             <label htmlFor="photo">
               <Icon path={mdiCameraPlus}
@@ -25,13 +58,13 @@ const UserProfile = () => {
           </div>
         </div>
         <div className="user-details">
-          <h3>Username</h3>
-          <p>User email</p>
-          <p>Joined:</p>
+          <h3>{user.name}</h3>
+          <p>{user.email}</p>
+          <p>{`Member since: ${user.createdAt.toDate().toDateString()}`}</p>
         </div>
       </div>
     </div>
-  )
+  ) : null
 }
 
 export default UserProfile
