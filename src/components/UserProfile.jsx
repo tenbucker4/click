@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Img from "../images/avatar-picture.webp"
 import Icon from '@mdi/react'
-import { mdiCameraPlus } from '@mdi/js';
+import { mdiCameraPlus, mdiLoading } from '@mdi/js';
 import { storage, db, auth } from '../firebase';
 import { ref, getDownloadURL, uploadBytes, deleteObject } from "firebase/storage";
 import { getDoc, doc, updateDoc } from "firebase/firestore";
@@ -10,6 +10,7 @@ import "../styles/UserProfile.css";
 const UserProfile = () => {
   const [profilePicture, setProfilePicture] = useState("");
   const [user, setUser] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // Actual image url
@@ -22,6 +23,7 @@ const UserProfile = () => {
     // Path to image url
     if (profilePicture) {
       const uploadProfilePicture = async () => {
+        setLoading(true);
         const imgRef = ref(storage, `profilePicture/${new Date().getTime()} - ${profilePicture.name}`)
 
         try {
@@ -34,8 +36,9 @@ const UserProfile = () => {
             avatar: url,
             avatarPath: pic.ref.fullPath
           })
-  
-          setProfilePicture("")
+
+          setLoading(false);
+          setProfilePicture("");
         } catch (error) {
           console.log(error)
         }
@@ -47,7 +50,15 @@ const UserProfile = () => {
   return user ? (
     <div className="profile-page">
       <div className="profile-container">
-        <div className="profile-picture">
+        {loading ? (
+          <Icon path={mdiLoading}
+          size={3}
+          title="Loading"
+          className="profile-loading-icon"
+          color="#0084ff"
+          spin/>
+        ) : (
+          <div className="profile-picture">
           <img src={user.avatar || Img}></img>
           <div className="image-overlay">
             <label htmlFor="photo">
@@ -60,6 +71,7 @@ const UserProfile = () => {
             <input id="photo" type="file" accept="image/*" style={{ display: "none" }} onChange={(e) => setProfilePicture(e.target.files[0])}></input>
           </div>
         </div>
+        )}
         <div className="user-details">
           <h3>{user.name}</h3>
           <p>{user.email}</p>
