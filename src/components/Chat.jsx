@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { db, auth } from "../firebase";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import User from './User';
+import MessageInput from './MessageInput';
 import "../styles/Chat.css"
 
 const Chat = () => {
@@ -37,7 +38,12 @@ const Chat = () => {
         ))}
       </div>
       <div className="chat-box">
-        {chat ? <div>{chat.name}</div> : <div className="chat-intro">Welcome! <br></br>Select a user from the list to begin a conversation.</div>}
+        {chat ? (
+          <>
+            <div>{`Your conversation with ${chat.name}`}</div> 
+            <MessageInput />
+          </>
+          ) : <div className="chat-intro">Welcome! <br></br>Select a user from the list to begin a conversation.</div>}
       </div>
     </div>
   )
