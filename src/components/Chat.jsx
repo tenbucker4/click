@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { db, auth } from "../firebase";
+import { db, auth, storage } from "../firebase";
 import { collection, query, where, onSnapshot, addDoc, Timestamp } from "firebase/firestore";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import User from './User';
 import MessageInput from './MessageInput';
 import "../styles/Chat.css"
