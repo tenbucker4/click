@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db, auth, storage } from "../firebase";
-import { collection, query, where, onSnapshot, addDoc, Timestamp } from "firebase/firestore";
+import { collection, query, where, onSnapshot, addDoc, Timestamp, orderBy } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import User from './User';
 import MessageInput from './MessageInput';
@@ -31,8 +31,16 @@ const Chat = () => {
   }, []);
 
   const selectChat = (user) => {
-    console.log(user)
+    // Displays conversation box with selected user
     setChat(user);
+
+    // Defines id of interaction between current user and selected user
+    const messageRecipient = user.uid
+    const id = currentUser > messageRecipient ? `${currentUser + messageRecipient}` : `${messageRecipient + currentUser}`
+
+    // Query for collection of all messages sent between users, sorts them by creation date
+    const messagesRef = collection(db, "messages", id, "chat");
+    const messageQuery = query(messagesRef, orderBy("createdAt", "asc"));
   }
 
   const sendMessage = async (e) => {
