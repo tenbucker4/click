@@ -16,6 +16,7 @@
 .chat-box {
     width: 65%;
     position: relative;
+    padding: 1rem;
 }
 
 .chat-intro {

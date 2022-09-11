@@ -4,4 +4,22 @@
 
 .message-box {
     width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 35px;
+}
+
+.message-box input {
+    width: 100%;
+    background-color: var(--off-white);
+    border: none;
+    height: 100%;
+    border-radius: 10px;
+    padding: 0 0.5rem;
+}
+
+.attach-message-image,
+.send-message {
+    cursor: pointer;
 }
