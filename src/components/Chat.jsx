@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db, auth } from "../firebase";
-import { collection, query, where, onSnapshot, addDoc } from "firebase/firestore";
+import { collection, query, where, onSnapshot, addDoc, Timestamp } from "firebase/firestore";
 import User from './User';
 import MessageInput from './MessageInput';
 import "../styles/Chat.css"
@@ -36,7 +36,20 @@ const Chat = () => {
   const sendMessage = async (e) => {
     e.preventDefault();
 
-    const messageRecipient = chat.uid
+    const messageRecipient = chat.uid;
+
+    // Creates a combined ID to represent chat between two unique users
+    const id = currentUser > messageRecipient ? `${currentUser + messageRecipient}` : `${messageRecipient + currentUser}`
+
+    // Need to define first collection (messages) as before, but also need to define a
+    //  subcollection ("chat") because we can't use addDoc to a document itself (id)
+    await addDoc(collection(db, "messages", id, "chat"), {
+      message,
+      from: currentUser,
+      to: messageRecipient,
+      createdAt: Timestamp.fromDate(new Date())
+    });
+    setMessage("");
   }
 
   return (

@@ -6,7 +6,7 @@ import "../styles/MessageInput.css"
 
 const MessageInput = ({ message, setMessage, sendMessage }) => {
   return (
-    <form className="message-form">
+    <form className="message-form" onSubmit={sendMessage}>
         <div className="message-box">
             <label htmlFor="attachment">
                 <Icon path={mdiCameraPlus}
@@ -16,7 +16,7 @@ const MessageInput = ({ message, setMessage, sendMessage }) => {
                     color="black"/>
             </label>
             <input id="attachment" type="file" accept="image/*" style={{ display: "none" }}></input>
-            <input placeholder="Aa"></input>
+            <input placeholder="Aa" defaultValue={message} onChange={(e) => setMessage(e.target.value)}></input>
             <Icon path={mdiSend}
                 title="Image Upload"
                 className="send-message"
