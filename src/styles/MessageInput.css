@@ -23,3 +23,8 @@
 .send-message {
     cursor: pointer;
 }
+
+.send-message-button {
+    background-color: transparent;
+    border: none;
+}

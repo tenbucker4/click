@@ -52,6 +52,11 @@ const Chat = () => {
     setMessage("");
   }
 
+  const clearMessage = (form, value) => {
+    console.log(form)
+    console.log(value);
+  }
+
   return (
     <div className="chat-page">
       <div className="conversations">
@@ -63,7 +68,7 @@ const Chat = () => {
         {chat ? (
           <>
             <div>Your conversation with <span style={{ color: "#0084ff" }}>{chat.name}</span></div> 
-            <MessageInput sendMessage={sendMessage} message={message} setMessage={setMessage}/>
+            <MessageInput sendMessage={sendMessage} message={message} setMessage={setMessage} clearMessage={clearMessage}/>
           </>
           ) : <div className="chat-intro">Welcome! <br></br>Select a user from the list to begin a conversation.</div>}
       </div>
