@@ -10,6 +10,7 @@ const Chat = () => {
   const [users, setUsers] = useState([]);
   const [chat, setChat] = useState("");
   const [message, setMessage] = useState("");
+  const [img, setImg] = useState()
 
   const currentUser = auth.currentUser.uid;
 
@@ -39,6 +40,14 @@ const Chat = () => {
 
     const messageRecipient = chat.uid;
 
+    let imgUrl;
+    if (img) {
+      const imgRef = ref(storage, `images/${new Date().getTime()} = ${img.name}`);
+      const pic = await uploadBytes(imgRef, img);
+      const downloadUrl = await getDownloadURL(ref(storage, pic.ref.fullPath));
+      imgUrl = downloadUrl
+    }
+
     // Creates a combined ID to represent chat between two unique users
     const id = currentUser > messageRecipient ? `${currentUser + messageRecipient}` : `${messageRecipient + currentUser}`
 
@@ -48,14 +57,10 @@ const Chat = () => {
       message,
       from: currentUser,
       to: messageRecipient,
-      createdAt: Timestamp.fromDate(new Date())
+      createdAt: Timestamp.fromDate(new Date()),
+      image: imgUrl || ""
     });
     setMessage("");
-  }
-
-  const clearMessage = (form, value) => {
-    console.log(form)
-    console.log(value);
   }
 
   return (
@@ -69,7 +74,7 @@ const Chat = () => {
         {chat ? (
           <>
             <div>Your conversation with <span style={{ color: "#0084ff" }}>{chat.name}</span></div> 
-            <MessageInput sendMessage={sendMessage} message={message} setMessage={setMessage} clearMessage={clearMessage}/>
+            <MessageInput sendMessage={sendMessage} message={message} setMessage={setMessage} setImg={setImg}/>
           </>
           ) : <div className="chat-intro">Welcome! <br></br>Select a user from the list to begin a conversation.</div>}
       </div>
