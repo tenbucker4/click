@@ -11,6 +11,7 @@ const Chat = () => {
   const [chat, setChat] = useState("");
   const [message, setMessage] = useState("");
   const [img, setImg] = useState()
+  const [messages, setMessages] = useState([]);
 
   const currentUser = auth.currentUser.uid;
 
@@ -41,6 +42,13 @@ const Chat = () => {
     // Query for collection of all messages sent between users, sorts them by creation date
     const messagesRef = collection(db, "messages", id, "chat");
     const messageQuery = query(messagesRef, orderBy("createdAt", "asc"));
+
+    onSnapshot(query, querySnapshot => {
+      let messages = []
+      querySnapshot.forEach(doc => {
+        messages.push(doc.data)
+      })
+    })
   }
 
   const sendMessage = async (e) => {
