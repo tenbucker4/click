@@ -94,7 +94,7 @@ const Auth = () => {
             <div>Welcome to <span style={{ color: "white"}}>CLICK</span></div>
         </div>
           {isSignUp? (
-                <form onSubmit={handleSignUp} autoComplete="off">
+                <form className="auth-form" onSubmit={handleSignUp} autoComplete="off">
                   <input id="name" placeholder="Name" name="name" onChange={handleChange} defaultValue={name}></input>
                   <input id="email" type="email" placeholder="Email" name="email" onChange={handleChange} defaultValue={email}></input>
                   <input id="password" type="password" placeholder="Password" name="password" onChange={handleChange} defaultValue={password}></input>
@@ -105,7 +105,7 @@ const Auth = () => {
                     <span>Register</span>
                   </button>
                 </form>
-          ) : ( <form onSubmit={handleSignIn} autoComplete="off">
+          ) : ( <form className="auth-form" onSubmit={handleSignIn} autoComplete="off">
                   <input type="email" placeholder="Email" name="email" onChange={handleChange}></input>
                   <input type="password" placeholder="Password" name="password" onChange={handleChange}></input>
                   {error? <p style={{ color: "red", fontSize: "12px" }}>{error}</p> : null}
