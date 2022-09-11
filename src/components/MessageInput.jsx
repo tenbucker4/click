@@ -4,7 +4,7 @@ import { mdiCameraPlus } from '@mdi/js';
 import { mdiSend } from '@mdi/js';
 import "../styles/MessageInput.css"
 
-const MessageInput = () => {
+const MessageInput = ({ message, setMessage, sendMessage }) => {
   return (
     <form className="message-form">
         <div className="message-box">
