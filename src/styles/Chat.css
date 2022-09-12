@@ -1,5 +1,5 @@
 .chat-page {
-    min-height: calc(100vh - 75px);
+    height: calc(100vh - 75px);
     display: flex;
 }
 
@@ -17,6 +17,7 @@
     width: 65%;
     position: relative;
     padding: 1rem;
+    overflow-y: scroll;
 }
 
 .chat-intro {

@@ -1,5 +1,31 @@
+.message-log {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.message-wrapper {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    max-width: 440px;
+}
+
 .message-wrapper p img {
     width: 100%;
     max-width: 450px;
     height: auto;
+}
+
+.message-wrapper p small {
+    font-size: 10px;
+}
+
+.sender {
+    color: white;
+    background-color: var(--blue);
+}
+
+.recipient {
+    background-color: var(--off-white);
 }

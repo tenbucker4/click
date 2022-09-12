@@ -95,7 +95,7 @@ const Chat = () => {
           <>
             <div>Your conversation with <span style={{ color: "#0084ff" }}>{chat.name}</span></div>
             <div className='message-log'>
-              {messages.length ? messages.map((msg, index) => <Message key={index} msg={msg}/>) : <p>This is the start of your conversation with <span style={{ color: "#0084ff" }}>{chat.name}</span>. Say hello! </p>}
+              {messages.length ? messages.map((msg, index) => <Message key={index} msg={msg} currentUser={currentUser}/>) : <p>This is the start of your conversation with <span style={{ color: "#0084ff" }}>{chat.name}</span>. Say hello! </p>}
             </div>
             <MessageInput sendMessage={sendMessage} message={message} setMessage={setMessage} setImg={setImg}/>
           </>
