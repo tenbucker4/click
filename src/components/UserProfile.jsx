@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
-import Img from "../images/avatar-picture.webp"
+import Img from "../images/unisex-avatar.png"
 import Icon from '@mdi/react'
 import { mdiCameraPlus, mdiLoading, mdiArrowLeft } from '@mdi/js';
 import { storage, db, auth } from '../firebase';

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { onSnapshot, doc } from 'firebase/firestore'
 import { db } from '../firebase'
-import Img from "../images/avatar-picture.webp"
+import Img from "../images/unisex-avatar.png"
 import "../styles/User.css"
 
 const User = ({ user, selectChat, currentUser, chat }) => {

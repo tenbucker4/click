@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { auth, db } from '../firebase'
 import { signOut } from "firebase/auth";
 import { getDoc, updateDoc, doc, query, where, collection, onSnapshot } from "firebase/firestore";
-import Img from "../images/avatar-picture.webp"
+import Img from "../images/unisex-avatar.png"
 import "../styles/Nav.css"
 
 const Nav = () => {
