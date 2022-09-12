@@ -4,7 +4,7 @@ import { mdiCameraPlus } from '@mdi/js';
 import { mdiSend } from '@mdi/js';
 import "../styles/MessageInput.css"
 
-const MessageInput = ({ message, setMessage, sendMessage, setImg }) => {
+const MessageInput = ({ message, setMessage, sendMessage, img, setImg }) => {
   return (
     <form className="message-form" onSubmit={sendMessage}>
         <div className="message-box">
@@ -15,7 +15,7 @@ const MessageInput = ({ message, setMessage, sendMessage, setImg }) => {
                     size={1}
                     color="black"/>
             </label>
-            <input id="attachment" type="file" accept="image/*" style={{ display: "none" }} onChange={(e) => setImg(e.target.files[0])}></input>
+            <input id="attachment" type="file" accept="image/*" files={img} style={{ display: "none" }} onChange={(e) => setImg(e.target.files[0])}></input>
             <input value={message} onChange={(e) => setMessage(e.target.value)}></input>
             <button type="submit" className="send-message-button">
                 <Icon path={mdiSend}

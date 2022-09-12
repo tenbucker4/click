@@ -49,7 +49,8 @@ const Chat = () => {
       querySnapshot.forEach(doc => {
         msgs.push(doc.data())
       })
-      setMessages(msgs)
+      setMessages(msgs);
+      setImg();
     })
 
     // If a last message between two users exists, clicking on an unread message will remove unread indicator
@@ -114,7 +115,7 @@ const Chat = () => {
               {messages.length ? messages.map((msg, index) => <Message key={index} msg={msg} currentUser={currentUser}/>) : 
               <p className="convo-start">This is the start of your conversation with <span style={{ color: "#0084ff" }}>{chat.name}</span>. Say hello! </p>}
             </div>
-            <MessageInput sendMessage={sendMessage} message={message} setMessage={setMessage} setImg={setImg}/>
+            <MessageInput sendMessage={sendMessage} message={message} setMessage={setMessage} img={img} setImg={setImg}/>
           </>
           ) : <div className="chat-intro">Welcome! <br></br>Select a user from the list to begin a conversation.</div>}
       </div>
