@@ -3,7 +3,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { auth, db } from '../firebase'
 import { signOut } from "firebase/auth";
-import { getDoc, updateDoc, doc, query, where, collection, onSnapshot } from "firebase/firestore";
+import { getDoc, updateDoc, doc } from "firebase/firestore";
 import Img from "../images/unisex-avatar.png"
 import "../styles/Nav.css"
 
@@ -12,6 +12,7 @@ const Nav = () => {
   const [profile, setProfile] = useState("")
   const navigate = useNavigate();
 
+  // Toggles online status to offline, signs user out, navigates to login page
   const handleSignOut = async () => {
     await updateDoc(doc(db, "users", auth.currentUser.uid), {
       isOnline: false
@@ -20,6 +21,7 @@ const Nav = () => {
     navigate("/auth");
   }
 
+  // Gets online profile to display name and profile picture
   useEffect(() => {
     if (user) {
       getDoc(doc(db, "users", auth?.currentUser?.uid)).then(docSnap => {

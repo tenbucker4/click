@@ -16,6 +16,7 @@ const Chat = () => {
 
   const currentUser = auth.currentUser.uid;
 
+  // Finds all users but current and displays accounts in conversation box.
   useEffect(() => {
     const usersRef = collection(db, "users");
 

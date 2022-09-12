@@ -8,6 +8,7 @@ const User = ({ user, selectChat, currentUser, chat }) => {
   const user2 = user?.uid;
   const [data, setData] = useState("");
 
+  // Searches database for last sent message (data) between two users
   useEffect(() => {
     const id = currentUser > user2 ? `${currentUser + user2}` : `${user2 + currentUser}`
     // subscribe to realtime listener

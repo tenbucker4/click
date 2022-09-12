@@ -1,14 +1,14 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate, useLocation } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthContext";
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { setDoc, updateDoc, doc, Timestamp, getDoc } from "firebase/firestore"
+import { setDoc, updateDoc, doc, Timestamp } from "firebase/firestore"
 import { auth, db } from '../firebase';
 import "../styles/Auth.css"
 
 const Auth = () => {
   const navigate = useNavigate();
 
+  // Define initial state for auth form
   const initState = {
     name: '',
     email: '',
@@ -19,15 +19,18 @@ const Auth = () => {
   }
 
   const [userData, setUserData] = useState(initState)
-
   const { name, email, password, confirmPassword, error, loading } = userData;
 
   const [isSignUp, setIsSignUp] = useState(false);
 
+  // On input change, set state values
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
+  // Attempts to register user. Checks if all fields are filled out and if passwords match.
+  // Registers users within "users" collection in firebase db. Toggles initial online state to offline.
+  // Reloads window to sign in page so user can log in.
   const handleSignUp = async (e) => {
     e.preventDefault();
     setUserData({ ...userData, error: null, loading: true });
@@ -64,6 +67,8 @@ const Auth = () => {
 
   }
 
+  // Attempts to sign in user. Check if email and password are both filled out. Searches "users" collection for 
+  // user's credentials, sets online status to online. Navigates to chat page.
   const handleSignIn = async (e) => {
     e.preventDefault();
     setUserData({ ...userData, error: null, loading: true });

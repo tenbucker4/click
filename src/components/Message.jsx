@@ -6,6 +6,7 @@ import "../styles/Message.css";
 const Message = ({ msg, currentUser }) => {
     const scrollRef = useRef()
 
+    // when a new message is received in "messages" collection in firebase, scroll to bottom of chat
     useEffect(() => {
         scrollRef.current?.scrollIntoView()
     }, [msg]);
