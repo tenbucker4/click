@@ -26,7 +26,7 @@ const User = ({ user, selectChat, currentUser, chat }) => {
             <div className="user-details-text">
               <div>{user.name}</div>
               {unread && (
-                <p style={{ fontSize: "12px" }}>{unread.message}</p>
+                <p style={{ fontSize: "12px" }}><strong>{unread.from === currentUser ? "You: " : null}</strong>{`${unread.message.slice(0, 15)}...`}</p>
               )}
             </div>
         </div>
