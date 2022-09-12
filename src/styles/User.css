@@ -56,3 +56,10 @@
     font-size: 12px;
     padding: 0.15rem;
 }
+
+@media (max-width: 750px) {
+    .user-box {
+        width: 30%;
+        flex: 0 0 30%;
+    }
+}
