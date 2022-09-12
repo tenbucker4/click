@@ -18,6 +18,13 @@
     position: relative;
     padding: 1rem;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.convo-header {
+    align-self: center;
 }
 
 .chat-intro {

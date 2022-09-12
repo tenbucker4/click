@@ -5,27 +5,41 @@
 }
 
 .message-wrapper {
-    display: flex;
-    flex-direction: column;
     border-radius: 10px;
     max-width: 440px;
+    padding: 0.5rem;
+    width: fit-content;
 }
 
-.message-wrapper p img {
+.message-contents {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-contents img {
     width: 100%;
     max-width: 450px;
     height: auto;
+    border-radius: 10px;
 }
 
-.message-wrapper p small {
+.message-contents small {
     font-size: 10px;
+    padding-top: 0.25rem;
 }
 
 .sender {
     color: white;
     background-color: var(--blue);
+    align-self: flex-end;
+}
+
+.sender .message-contents p,
+.sender .message-contents small {
+    align-self: flex-end;
 }
 
 .recipient {
     background-color: var(--off-white);
+    align-self: flex-start;
 }

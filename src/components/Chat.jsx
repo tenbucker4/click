@@ -53,8 +53,6 @@ const Chat = () => {
     })
   }
 
-  console.log(messages);
-
   const sendMessage = async (e) => {
     e.preventDefault();
 
@@ -93,8 +91,8 @@ const Chat = () => {
       <div className="chat-box">
         {chat ? (
           <>
-            <div>Your conversation with <span style={{ color: "#0084ff" }}>{chat.name}</span></div>
-            <div className='message-log'>
+            <div className="convo-header">Your conversation with <span style={{ color: "#0084ff" }}>{chat.name}</span></div>
+            <div className="message-log">
               {messages.length ? messages.map((msg, index) => <Message key={index} msg={msg} currentUser={currentUser}/>) : <p>This is the start of your conversation with <span style={{ color: "#0084ff" }}>{chat.name}</span>. Say hello! </p>}
             </div>
             <MessageInput sendMessage={sendMessage} message={message} setMessage={setMessage} setImg={setImg}/>
