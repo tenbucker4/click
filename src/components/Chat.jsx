@@ -52,6 +52,7 @@ const Chat = () => {
       setMessages(msgs)
     })
 
+    // If a last message between two users exists, clicking on an unread message will remove unread indicator
     const readDoc = await getDoc(doc(db, "lastMsg", id))
     if (readDoc.data() && readDoc.data()?.from !== currentUser) {
       await updateDoc(doc(db, "lastMsg", id), { unread: false });

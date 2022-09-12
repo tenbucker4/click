@@ -3,12 +3,13 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { auth, db } from '../firebase'
 import { signOut } from "firebase/auth";
-import { getDoc, updateDoc, doc } from "firebase/firestore";
+import { getDoc, updateDoc, doc, query, where, collection, onSnapshot } from "firebase/firestore";
 import Img from "../images/avatar-picture.webp"
 import "../styles/Nav.css"
 
 const Nav = () => {
   const { user } = useContext(AuthContext)
+  const [profile, setProfile] = useState("")
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -19,15 +20,25 @@ const Nav = () => {
     navigate("/auth");
   }
 
+  useEffect(() => {
+    if (user) {
+      getDoc(doc(db, "users", auth?.currentUser?.uid)).then(docSnap => {
+      if (docSnap.exists) {
+        setProfile(docSnap.data());
+      }
+    })
+    }
+  })
+
 
   return (
     <header>
         <div className="app-title">CLICK</div>
         <div className="nav-user-details">
-          {user ? <p style={{ fontSize: "14px"}}>{`Hello, ${user.name}`}</p> : null}
+          {user ? <p style={{ fontSize: "14px"}}>{`Hello, ${profile.name}`}</p> : null}
           {user ? (
             <Link to="/profile">
-              <img className="nav-avatar" src={user.avatar || Img}></img>
+              <img className="nav-avatar" src={profile.avatar || Img}></img>
             </Link>
           ) : null}
           {user? (
