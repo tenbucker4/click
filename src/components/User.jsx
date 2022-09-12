@@ -30,7 +30,7 @@ const User = ({ user, selectChat, currentUser, chat }) => {
               </div>
               {data && (
                 <p style={{ fontSize: "12px" }}>
-                  <strong>{data.from === currentUser ? "You: " : null}</strong>{data.message.length < 15 ? data.message : `${data.message.slice(0, 15)}...`}
+                  <strong>{data.from === currentUser ? "You: " : null}</strong>{data.message.length < 12 ? data.message : `${data.message.slice(0, 12)}...`}
                 </p>
               )}
             </div>

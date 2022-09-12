@@ -63,3 +63,24 @@
         flex: 0 0 30%;
     }
 }
+
+@media (max-width: 575px) {
+    .user-box .avatar {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .user-details {
+        font-size: smaller;
+    }
+
+    .online-indicator {
+        height: 0.5rem;
+        width: 0.5rem;
+    }
+
+    .user-box {
+        width: 40%;
+        flex: 0 0 40%;
+    }
+}

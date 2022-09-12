@@ -48,7 +48,7 @@
     }
 
     .conversations {
-        height: 300px;
+        min-height: 100px;
         width: 100%;
         flex-direction: row;
         overflow-y: auto;
@@ -57,5 +57,16 @@
 
     .chat-box {
         width: 100%;
+        min-height: calc(100vh - 175px);
+    }
+}
+
+@media (max-width: 575px) {
+    .conversations {
+        min-height: 75px;
+    }
+
+    .chat-box {
+        min-height: calc(100vh - 150px);
     }
 }
