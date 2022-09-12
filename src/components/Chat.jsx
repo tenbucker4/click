@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db, auth, storage } from "../firebase";
-import { collection, query, where, onSnapshot, addDoc, Timestamp, orderBy, setDoc, doc, getDoc } from "firebase/firestore";
+import { collection, query, where, onSnapshot, addDoc, Timestamp, orderBy, setDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import User from './User';
 import MessageInput from './MessageInput';
@@ -25,14 +25,14 @@ const Chat = () => {
     const find = onSnapshot(userQuery, (querySnapshot) => {
       let users = [];
       querySnapshot.forEach((doc) => {
-        users.push(doc.data());
+        users.push(doc.data()); 
       });
       setUsers(users);
     });
     return () => find();
   }, []);
 
-  const selectChat = (user) => {
+  const selectChat = async (user) => {
     // Displays conversation box with selected user
     setChat(user);
 
@@ -51,6 +51,11 @@ const Chat = () => {
       })
       setMessages(msgs)
     })
+
+    const readDoc = await getDoc(doc(db, "lastMsg", id))
+    if (readDoc.data() && readDoc.data()?.from !== currentUser) {
+      await updateDoc(doc(db, "lastMsg", id), { unread: false });
+    }
   }
 
   const sendMessage = async (e) => {
