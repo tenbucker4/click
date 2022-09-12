@@ -35,13 +35,13 @@ const Nav = () => {
     <header>
         <div className="app-title">CLICK</div>
         <div className="nav-user-details">
-          {user ? <p style={{ fontSize: "14px"}}>{`Hello, ${profile.name}`}</p> : null}
-          {user ? (
+          {profile.isOnline ? <p style={{ fontSize: "14px"}}>{`Hello, ${profile.name}`}</p> : null}
+          {profile.isOnline ? (
             <Link to="/profile">
               <img className="nav-avatar" src={profile.avatar || Img}></img>
             </Link>
           ) : null}
-          {user? (
+          {profile.isOnline ? (
             <div>
               <button className="nav-button" onClick={handleSignOut}>Logout</button>
             </div>

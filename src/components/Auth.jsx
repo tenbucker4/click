@@ -86,7 +86,7 @@ const Auth = () => {
       setUserData({ ...userData, error: error.message, loading: false });
     }
   }
-
+  
   return (
 
     <div className="login-container">
@@ -95,7 +95,7 @@ const Auth = () => {
         </div>
           {isSignUp? (
                 <form className="auth-form" onSubmit={handleSignUp} autoComplete="off">
-                  <input id="name" placeholder="Name" name="name" onChange={handleChange} defaultValue={name}></input>
+                  <input id="name" placeholder="Name" name="name" onChange={handleChange}></input>
                   <input id="email" type="email" placeholder="Email" name="email" onChange={handleChange} defaultValue={email}></input>
                   <input id="password" type="password" placeholder="Password" name="password" onChange={handleChange} defaultValue={password}></input>
                   <input id="confirmPassword" type="password" placeholder="Confirm Password" name="confirmPassword" onChange={handleChange} defaultValue={confirmPassword}></input>
