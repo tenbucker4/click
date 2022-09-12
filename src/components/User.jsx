@@ -19,13 +19,16 @@ const User = ({ user, selectChat, currentUser, chat }) => {
     return () => unsub()
   }, [])
 
-  console.log(unread);
-
   return (
     <div className={`user-box ${chat.name === user.name && "highlighted-user"}`} onClick={() => selectChat(user)}>
         <div className="user-details">
             <img className="avatar" src={user.avatar || Img } alt="profile-picture"></img>
-            <div>{user.name}</div>
+            <div className="user-details-text">
+              <div>{user.name}</div>
+              {unread && (
+                <p style={{ fontSize: "12px" }}>{unread.message}</p>
+              )}
+            </div>
         </div>
         <div className={`online-indicator ${user.isOnline ? "online" : "offline"}`}></div>
     </div>
