@@ -5,7 +5,8 @@
 
 .conversations {
     width: 35%;
-    background-color: var(--off-white);
+    background-color: white;
+    box-shadow: 2px 0 5px -2px #888;
     overflow-y: auto;
     display: flex;
     flex-direction: column;

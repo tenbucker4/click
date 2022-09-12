@@ -7,6 +7,10 @@
     font-family: "Roboto", sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     --blue: #0084ff;
     --off-white: rgb(231, 230, 230);
