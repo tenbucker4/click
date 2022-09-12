@@ -41,3 +41,17 @@
 .offline {
     background-color: red;
 }
+
+.user-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.new-message {
+    background-color: var(--blue);
+    color: white;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 0.15rem;
+}

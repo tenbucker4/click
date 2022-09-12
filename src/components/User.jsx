@@ -6,13 +6,13 @@ import "../styles/User.css"
 
 const User = ({ user, selectChat, currentUser, chat }) => {
   const user2 = user?.uid;
-  const [unread, setUnread] = useState("");
+  const [data, setData] = useState("");
 
   useEffect(() => {
     const id = currentUser > user2 ? `${currentUser + user2}` : `${user2 + currentUser}`
     // subscribe to realtime listener
     let unsub = onSnapshot(doc(db, "lastMsg", id), doc => {
-      setUnread(doc.data());
+      setData(doc.data());
     })
     
     //unsub from realtime listener
@@ -24,9 +24,14 @@ const User = ({ user, selectChat, currentUser, chat }) => {
         <div className="user-details">
             <img className="avatar" src={user.avatar || Img } alt="profile-picture"></img>
             <div className="user-details-text">
-              <div>{user.name}</div>
-              {unread && (
-                <p style={{ fontSize: "12px" }}><strong>{unread.from === currentUser ? "You: " : null}</strong>{`${unread.message.slice(0, 15)}...`}</p>
+              <div className="user-row"> 
+                <div>{user.name}</div>
+                {data?.from !== currentUser && data?.unread && (<div className="new-message">New</div>)}
+              </div>
+              {data && (
+                <p style={{ fontSize: "12px" }}>
+                  <strong>{data.from === currentUser ? "You: " : null}</strong>{`${data.message.slice(0, 15)}...`}
+                </p>
               )}
             </div>
         </div>
