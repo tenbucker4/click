@@ -4,7 +4,7 @@ import { db } from '../firebase'
 import Img from "../images/avatar-picture.webp"
 import "../styles/User.css"
 
-const User = ({ user, selectChat, currentUser }) => {
+const User = ({ user, selectChat, currentUser, chat }) => {
   const user2 = user?.uid;
   const [unread, setUnread] = useState("");
 
@@ -22,7 +22,7 @@ const User = ({ user, selectChat, currentUser }) => {
   console.log(unread);
 
   return (
-    <div className="user-box" onClick={() => selectChat(user)}>
+    <div className={`user-box ${chat.name === user.name && "highlighted-user"}`} onClick={() => selectChat(user)}>
         <div className="user-details">
             <img className="avatar" src={user.avatar || Img } alt="profile-picture"></img>
             <div>{user.name}</div>

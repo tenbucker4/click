@@ -7,6 +7,10 @@
     cursor: pointer;
 }
 
+.highlighted-user {
+    background-color: rgb(203, 203, 203);
+}
+
 .user-box:hover {
     background-color: rgb(203, 203, 203);
 }

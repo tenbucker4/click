@@ -97,7 +97,7 @@ const Chat = () => {
     <div className="chat-page">
       <div className="conversations">
         {users.map((user) => (
-          <User key={user.uid} user={user} selectChat={selectChat} currentUser={currentUser}/>
+          <User key={user.uid} user={user} selectChat={selectChat} currentUser={currentUser} chat={chat}/>
         ))}
       </div>
       <div className="chat-box">
