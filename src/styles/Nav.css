@@ -6,6 +6,7 @@ header {
     height: 75px;
     background-color: var(--blue);
     padding: 0 2rem;
+    box-shadow: 2px 0 5px 1px #888;
 }
 
 .app-title {

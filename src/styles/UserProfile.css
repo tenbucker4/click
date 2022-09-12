@@ -59,3 +59,21 @@
     left: 2rem;
     cursor: pointer;
 }
+
+@media (max-width: 575px) {
+    .profile-container {
+        padding-top: 2.5rem;
+        font-size: smaller;
+        gap: 0.5rem;
+    }
+
+    .profile-picture img {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .back-to-chat {
+        top: 1rem;
+        left: 1rem;
+    }
+}
