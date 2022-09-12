@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db, auth, storage } from "../firebase";
-import { collection, query, where, onSnapshot, addDoc, Timestamp, orderBy } from "firebase/firestore";
+import { collection, query, where, onSnapshot, addDoc, Timestamp, orderBy, setDoc, doc, getDoc } from "firebase/firestore";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import User from './User';
 import MessageInput from './MessageInput';
@@ -43,18 +43,24 @@ const Chat = () => {
     const messagesRef = collection(db, "messages", id, "chat");
     const messageQuery = query(messagesRef, orderBy("createdAt", "asc"));
 
-    onSnapshot(query, querySnapshot => {
-      let messages = []
+    onSnapshot(messageQuery, (querySnapshot) => {
+      let msgs = [];
       querySnapshot.forEach(doc => {
-        messages.push(doc.data)
+        msgs.push(doc.data())
       })
+      setMessages(msgs)
     })
   }
+
+  console.log(messages);
 
   const sendMessage = async (e) => {
     e.preventDefault();
 
     const messageRecipient = chat.uid;
+
+    // Creates a combined ID to represent chat between two unique users
+    const id = currentUser > messageRecipient ? `${currentUser + messageRecipient}` : `${messageRecipient + currentUser}`
 
     let imgUrl;
     if (img) {
@@ -63,9 +69,6 @@ const Chat = () => {
       const downloadUrl = await getDownloadURL(ref(storage, pic.ref.fullPath));
       imgUrl = downloadUrl
     }
-
-    // Creates a combined ID to represent chat between two unique users
-    const id = currentUser > messageRecipient ? `${currentUser + messageRecipient}` : `${messageRecipient + currentUser}`
 
     // Need to define first collection (messages) as before, but also need to define a
     //  subcollection ("chat") because we can't use addDoc to a document itself (id)
