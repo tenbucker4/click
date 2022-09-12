@@ -26,6 +26,11 @@
 
 .convo-header {
     align-self: center;
+    text-align: center;
+}
+
+.convo-start {
+    text-align: center;
 }
 
 .chat-intro {

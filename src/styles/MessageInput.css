@@ -1,5 +1,6 @@
 .message-form {
     width: 100%;
+    margin-top: auto;
 }
 
 .message-box {
@@ -14,6 +15,7 @@
     width: 100%;
     background-color: var(--off-white);
     border: none;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     height: 100%;
     border-radius: 10px;
     padding: 0 0.5rem;

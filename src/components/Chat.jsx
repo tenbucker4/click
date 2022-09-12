@@ -78,6 +78,18 @@ const Chat = () => {
       createdAt: Timestamp.fromDate(new Date()),
       image: imgUrl || ""
     });
+    
+    // Instead of creating a new doc with a new ID every time a message is sent, we create a new collection with the 
+    // most recent message sent between two users, using the ID that links the two
+    await setDoc(doc(db, "lastMsg", id), {
+      message,
+      from: currentUser,
+      to: messageRecipient,
+      createdAt: Timestamp.fromDate(new Date()),
+      image: imgUrl || "",
+      unread: true,
+    })
+
     setMessage("");
   }
 
@@ -85,7 +97,7 @@ const Chat = () => {
     <div className="chat-page">
       <div className="conversations">
         {users.map((user) => (
-          <User key={user.uid} user={user} selectChat={selectChat}/>
+          <User key={user.uid} user={user} selectChat={selectChat} currentUser={currentUser}/>
         ))}
       </div>
       <div className="chat-box">
@@ -93,7 +105,8 @@ const Chat = () => {
           <>
             <div className="convo-header">Your conversation with <span style={{ color: "#0084ff" }}>{chat.name}</span></div>
             <div className="message-log">
-              {messages.length ? messages.map((msg, index) => <Message key={index} msg={msg} currentUser={currentUser}/>) : <p>This is the start of your conversation with <span style={{ color: "#0084ff" }}>{chat.name}</span>. Say hello! </p>}
+              {messages.length ? messages.map((msg, index) => <Message key={index} msg={msg} currentUser={currentUser}/>) : 
+              <p className="convo-start">This is the start of your conversation with <span style={{ color: "#0084ff" }}>{chat.name}</span>. Say hello! </p>}
             </div>
             <MessageInput sendMessage={sendMessage} message={message} setMessage={setMessage} setImg={setImg}/>
           </>

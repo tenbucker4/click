@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Img from "../images/avatar-picture.webp"
 import "../styles/User.css"
 
-const User = ({ user, selectChat }) => {
+const User = ({ user, selectChat, currentUser }) => {
+  
+
   return (
     <div className="user-box" onClick={() => selectChat(user)}>
         <div className="user-details">
