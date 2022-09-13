@@ -86,7 +86,7 @@ const Auth = () => {
 
       setUserData({initState});
 
-      navigate("/chat");
+      navigate("/click/chat");
 
     } catch (error) {
       setUserData({ ...userData, error: error.message, loading: false });

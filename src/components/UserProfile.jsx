@@ -51,7 +51,7 @@ const UserProfile = () => {
   return user ? (
     <>
       <div className="profile-page">
-        <Link to="/chat">
+        <Link to="/click/chat">
           <Icon path={mdiArrowLeft}
           size={1.5}
           title="Back"

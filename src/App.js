@@ -14,13 +14,19 @@ function App() {
             <BrowserRouter>
                 <Nav />
                 <Routes>
-                    <Route path="/" element={<Navigate to="/auth" />} />
-                    <Route path="/auth" element={<Home />} />
-                    <Route path="/chat" element={<PrivateRoute />}>
-                        <Route path="/chat" element={<Chat />} />
+                    <Route
+                        path="/click"
+                        element={<Navigate to="/click/auth" />}
+                    />
+                    <Route path="/click/auth" element={<Home />} />
+                    <Route path="click/chat" element={<PrivateRoute />}>
+                        <Route path="click/chat" element={<Chat />} />
                     </Route>
-                    <Route path="/profile" element={<PrivateRoute />}>
-                        <Route path="/profile" element={<UserProfile />} />
+                    <Route path="/click/profile" element={<PrivateRoute />}>
+                        <Route
+                            path="/click/profile"
+                            element={<UserProfile />}
+                        />
                     </Route>
                 </Routes>
             </BrowserRouter>

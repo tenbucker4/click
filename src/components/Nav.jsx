@@ -18,7 +18,7 @@ const Nav = () => {
       isOnline: false
     })
     await signOut(auth);
-    navigate("/auth");
+    navigate("/click/auth");
   }
 
   // Gets online profile to display name and profile picture
@@ -39,7 +39,7 @@ const Nav = () => {
         <div className="nav-user-details">
           {profile.isOnline ? <p style={{ fontSize: "14px"}}>{`Hello, ${profile.name}`}</p> : null}
           {profile.isOnline ? (
-            <Link to="/profile">
+            <Link to="/click/profile">
               <img className="nav-avatar" src={profile.avatar || Img}></img>
             </Link>
           ) : null}
@@ -48,7 +48,7 @@ const Nav = () => {
               <button className="nav-button" onClick={handleSignOut}>Logout</button>
             </div>
             ) : (
-            <button className="nav-button" onClick={() => navigate("/auth")}>Login</button>
+            <button className="nav-button" onClick={() => navigate("/click/auth")}>Login</button>
           )}
         </div>
     </header>
