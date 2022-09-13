@@ -59,7 +59,7 @@ const Auth = () => {
 
       setUserData(initState);
 
-      window.location.reload();
+      navigate("/click");
 
     } catch (err) {
       setUserData({ ...userData, error: err.message, loading: false });
