@@ -19,8 +19,8 @@ function App() {
                         element={<Navigate to="/click/auth" />}
                     />
                     <Route path="/click/auth" element={<Home />} />
-                    <Route path="click/chat" element={<PrivateRoute />}>
-                        <Route path="click/chat" element={<Chat />} />
+                    <Route path="/click/chat" element={<PrivateRoute />}>
+                        <Route path="/click/chat" element={<Chat />} />
                     </Route>
                     <Route path="/click/profile" element={<PrivateRoute />}>
                         <Route
