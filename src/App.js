@@ -15,6 +15,7 @@ function App() {
                 <Nav />
                 <Routes>
                     <Route
+                        exact
                         path="/click"
                         element={<Navigate to="/click/auth" />}
                     />

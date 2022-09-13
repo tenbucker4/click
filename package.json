@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": "https://tenbucker4.github.io/click/",
+  "homepage": "https://tenbucker4.github.io/click",
   "private": true,
   "dependencies": {
     "@mdi/js": "^7.0.96",
